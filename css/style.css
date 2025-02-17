@@ -1,4 +1,4 @@
-/* 📌 Mobile-first default styles */
+/* 📌 Основные стили */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -12,71 +12,54 @@ body {
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 10px;
+    justify-content: center;
 }
 
+/* 📌 Контейнер для каждой машины */
 figure {
     background: white;
     padding: 10px;
     border: 2px solid #333;
     text-align: center;
+    width: 400px; /* Одинаковая ширина */
+    height: 270px; /* Одинаковая высота */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 auto;
 }
 
-/* 📌 Делаем все изображения одинаковыми */
+/* 📌 Делаем все изображения одного размера */
 img {
-    width: 100%;
-    max-width: 400px; /* Максимальная ширина */
+    width: 100%; /* Занимает всю ширину контейнера */
     height: 250px; /* Фиксированная высота */
-    object-fit: cover; /* Обрезка для одинакового размера */
-    border-radius: 5px;
+    object-fit: cover; /* Обрезка, чтобы не искажалось */
 }
 
-/* 📌 Tablet View (min-width: 772px) */
+/* 📌 Tablet View (>=772px) */
 @media screen and (min-width: 772px) {
     .container {
         grid-template-columns: repeat(2, 1fr);
     }
 
     figure {
-        border-radius: 50%; /* Делаем круглые фигуры */
+        width: 100%;
     }
 
     figure:last-child {
-        grid-column: span 2; /* Последняя машина занимает 2 колонки */
+        grid-column: span 2;
     }
 }
 
-/* 📌 Large Screen View (min-width: 992px) */
+/* 📌 Large Screen View (>=992px) */
 @media screen and (min-width: 992px) {
     .container {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    figure {
-        border-radius: 0; /* Убираем круглые края */
-    }
-
     figure:nth-child(3n) {
-        grid-column: span 2; /* Каждый третий элемент занимает две колонки */
-    }
-}
-
-/* 📌 prefers-reduced-motion (отключаем анимации) */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        scroll-behavior: auto !important;
-    }
-}
-
-/* 📌 Dark Mode */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #222;
-        color: #eee;
-    }
-
-    figure {
-        background: #333;
-        color: yellow;
-        border-color: black;
+        grid-column: span 2;
     }
 }
