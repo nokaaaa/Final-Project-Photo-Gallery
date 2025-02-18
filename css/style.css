@@ -1,10 +1,8 @@
-/* 📌 Основные стили */
+/* === Base Styles (Mobile-First) === */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center;
-    background-color: #f4f4f4;
 }
 
 .container {
@@ -12,54 +10,68 @@ body {
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 10px;
-    justify-content: center;
 }
 
-/* 📌 Контейнер для каждой машины */
 figure {
-    background: white;
+    background-color: #f5f5f5;
     padding: 10px;
-    border: 2px solid #333;
+    border: 2px solid #ccc;
     text-align: center;
-    width: 400px; /* Одинаковая ширина */
-    height: 270px; /* Одинаковая высота */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-    margin: 0 auto;
+    border-radius: 5px;
 }
 
-/* 📌 Делаем все изображения одного размера */
 img {
-    width: 100%; /* Занимает всю ширину контейнера */
-    height: 250px; /* Фиксированная высота */
-    object-fit: cover; /* Обрезка, чтобы не искажалось */
+    width: 100%;
+    height: auto;
 }
 
-/* 📌 Tablet View (>=772px) */
-@media screen and (min-width: 772px) {
+/* === Tablet View (min-width: 772px) === */
+@media (min-width: 772px) {
     .container {
         grid-template-columns: repeat(2, 1fr);
     }
-
+    
     figure {
-        width: 100%;
+        border-radius: 50%; /* Circular images */
     }
-
+    
     figure:last-child {
-        grid-column: span 2;
+        grid-column: span 2; /* Last figure spans both columns */
     }
 }
 
-/* 📌 Large Screen View (>=992px) */
-@media screen and (min-width: 992px) {
+/* === Large Screen View (min-width: 992px) === */
+@media (min-width: 992px) {
     .container {
         grid-template-columns: repeat(3, 1fr);
     }
-
+    
+    figure {
+        border-radius: 0; /* Remove border-radius */
+    }
+    
     figure:nth-child(3n) {
-        grid-column: span 2;
+        grid-column: span 2; /* Every third figure spans two columns */
+    }
+}
+
+/* === Prefers-Reduced-Motion === */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto; /* Remove scroll behavior */
+    }
+}
+
+/* === Dark Mode (Prefers Color Scheme) === */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222;
+        color: #fff;
+    }
+    
+    figure {
+        background-color: #333;
+        color: #ffd700; /* Yellowish text */
+        border-color: #000; /* Black border */
     }
 }
